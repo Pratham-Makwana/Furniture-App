@@ -1,17 +1,18 @@
-class CategoryModel{
-   String imageUrl,name , price , type , fullName, description;
-   Map<String,List<String>> diifrentImageUrl;
+class CategoryModel {
+  String imageUrl, name, price, type, fullName, description;
+  Map<String, List<String>> diifrentImageUrl;
 
 
-   CategoryModel({
-     required this.imageUrl,
-     required this.name,
-     required this.fullName,
-     required this.price,
-     required this.type,
-     required this.description,
-     required this.diifrentImageUrl,
+  CategoryModel({
+    required this.imageUrl,
+    required this.name,
+    required this.fullName,
+    required this.price,
+    required this.type,
+    required this.description,
+    required this.diifrentImageUrl,
   });
+}
 
    List<CategoryModel> categoriesGrid = [
      CategoryModel(
@@ -78,4 +79,3 @@ class CategoryModel{
      ),
    ];
 
-}
