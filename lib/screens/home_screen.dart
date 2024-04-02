@@ -1,3 +1,4 @@
+import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:furniture_app/model/category_model.dart';
@@ -24,8 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
     {'icon': Icons.mail, 'color': Colors.black54},
     {'icon': Icons.person, 'color': Colors.black54},
   ];
-
-
 
   Widget getCategories(int index) {
     return GestureDetector(
@@ -192,26 +191,51 @@ class _HomeScreenState extends State<HomeScreen> {
                         .toList(),
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
 
                 // Item Gris View Using flutter_staggered_grid_view
                 StaggeredGrid.count(
                   mainAxisSpacing: 20,
                   crossAxisSpacing: 20,
                   crossAxisCount: 2,
-                  children: categoriesGrid.asMap().entries.map((MapEntry map){
+                  children: categoriesGrid.asMap().entries.map((MapEntry map) {
                     int index = map.key;
                     return GestureDetector(
-                      onTap: (){},
+                      onTap: () {},
                       child: GridItems(index),
                     );
                   }).toList(),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
               ],
             ),
           ),
         ),
       ),
+      bottomNavigationBar: CircleNavBar(
+          onTap: (index) {
+            setState(() {
+              activeIndex = index;
+            });
+          },
+          activeIndex: activeIndex,
+          activeIcons: List.generate(
+              navItems.length,
+              (index) => Icon(
+                    navItems[index]['icon'],
+                    color: index == activeIndex ? Colors.white : Colors.black54,
+                  )),
+          inactiveIcons: List.generate(
+              navItems.length,
+              (index) => Icon(navItems[index]['icon'],
+                  color: index == activeIndex ? Colors.white : Colors.black87)),
+          height: 60,
+          circleWidth: 60,
+          color: Colors.indigo),
     );
   }
 }

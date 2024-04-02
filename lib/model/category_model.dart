@@ -36,16 +36,16 @@ class CategoryModel {
      ),
 
      CategoryModel(
-       imageUrl: "tripos_lamp_1.png",
+       imageUrl: "tripod_lamp_1.png",
        name: "Tripod Lamp",
        fullName: "Tripod Lamp",
        price: "\$1520.00" ,
        type: 'tripod_lamp',
        description: "A contemporary twist on classic mid-century modern design" ,
        diifrentImageUrl: {
-         "tripos_lamp_1" : ["tripos_lamp_1.png"],
-         "tripos_lamp_2" : ["tripos_lamp_2.png"],
-         "tripos_lamp_3" : ["tripos_lamp_3.png"],
+         "tripod_lamp_1" : ["tripod_lamp_1.png"],
+         "tripod_lamp_2" : ["tripod_lamp_2.png"],
+         "tripod_lamp_3" : ["tripod_lamp_3.png"],
        },
      ),
 
