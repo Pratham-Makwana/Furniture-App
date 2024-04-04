@@ -2,6 +2,7 @@ import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:furniture_app/model/category_model.dart';
+import 'package:furniture_app/screens/product_screen.dart';
 import 'package:furniture_app/widgets/grid_items.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -203,7 +204,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: categoriesGrid.asMap().entries.map((MapEntry map) {
                     int index = map.key;
                     return GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ProductScreen(categoriesGrid[index])));
+                      },
                       child: GridItems(index),
                     );
                   }).toList(),
