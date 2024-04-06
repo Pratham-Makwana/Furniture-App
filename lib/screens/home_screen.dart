@@ -2,6 +2,7 @@ import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:furniture_app/model/category_model.dart';
+import 'package:furniture_app/screens/cart_screen.dart';
 import 'package:furniture_app/screens/product_screen.dart';
 import 'package:furniture_app/widgets/grid_items.dart';
 
@@ -70,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.only(left: 20, right: 20, top: 20),
             child: Column(
               children: [
-                // Custom APP Bar
+                // ---------------------------Custom App Bar------------------------------------
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -99,7 +100,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     Row(
                       children: [
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
+                          },
                           child: Container(
                             height: 50,
                             width: 50,

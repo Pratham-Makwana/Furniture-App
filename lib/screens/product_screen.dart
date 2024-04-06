@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:furniture_app/main.dart';
 import 'package:furniture_app/model/category_model.dart';
+import 'package:furniture_app/screens/cart_screen.dart';
+import 'package:furniture_app/screens/home_screen.dart';
 
 class ProductScreen extends StatefulWidget {
   final CategoryModel model;
@@ -131,7 +134,9 @@ class _ProductScreenState extends State<ProductScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
+                        },
                         child: Container(
                           height: 50,
                           width: 50,
@@ -301,7 +306,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       height: 28,
                     ),
                     Container(
-                      height: 70,
+                      height: 90,
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: similarImages
@@ -313,12 +318,13 @@ class _ProductScreenState extends State<ProductScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 28,
+                      height: 15,
                     ),
-                    // ----------------------Product Details-----------------------
+                    // ----------------------Product Details And Purchase Count-----------------------
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        // --------------------------Product Details-----------------------------------
                         Expanded(
                           flex: 12,
                           child: Container(
@@ -378,10 +384,9 @@ class _ProductScreenState extends State<ProductScreen> {
                             ),
                           ),
                         ),
-                        Expanded(
-                            child: SizedBox(
-                          height: 7,
-                        )),
+                        Expanded(child: SizedBox()),
+
+                        //--------------------Product Purchase Count----------------------
                         Expanded(
                           flex: 3,
                           child: Container(
@@ -400,25 +405,26 @@ class _ProductScreenState extends State<ProductScreen> {
                             child: Padding(
                               padding: EdgeInsets.symmetric(vertical: 25),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   GestureDetector(
-                                    onTap: (){
-                                      if (purchaseCount > 1){
+                                    onTap: () {
+                                      if (purchaseCount > 1) {
                                         purchaseCount -= 1;
-                                      }else{
+                                      } else {
                                         purchaseCount = 1;
                                       }
-                                      setState(() {
-
-                                      });
+                                      setState(() {});
                                     },
                                     child: Container(
                                       child: Icon(
                                         Icons.remove,
                                         size: 30,
-                                        color: purchaseCount < 2 ? Colors.grey: Colors.black,
+                                        color: purchaseCount < 2
+                                            ? Colors.grey
+                                            : Colors.black,
                                       ),
                                     ),
                                   ),
@@ -432,17 +438,88 @@ class _ProductScreenState extends State<ProductScreen> {
                                     child: Center(
                                       child: Text(
                                         purchaseCount.toString(),
-                                        style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        purchaseCount += 1;
+                                      });
+                                    },
+                                    child: Container(
+                                      child: Icon(
+                                        Icons.add,
+                                        size: 30,
+                                        color: Colors.black,
                                       ),
                                     ),
                                   ),
                                 ],
-
                               ),
                             ),
                           ),
                         ),
                       ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 8, right: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              widget.model.description,
+                              maxLines: 2,
+                              overflow: TextOverflow.clip,
+                              style: TextStyle(
+                                fontSize: 22,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 15,),
+                    GestureDetector(
+                      onTap: (){
+
+                      },
+                      child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 20),
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        height: 55,
+                        width: MediaQuery.of(context).size.width / 2,
+                        decoration: BoxDecoration(
+                            color: Colors.indigo,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color(0xFFE7EEF8),
+                                blurRadius: 1.0,
+                                offset: Offset(2.6,2.6),
+                              )
+                            ]
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.shopping_cart,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                            //SizedBox(width: 5),
+                            Text("Add To Cart",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 20),),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
