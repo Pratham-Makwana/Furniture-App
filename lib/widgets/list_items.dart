@@ -84,61 +84,58 @@ class _ListItemsState extends State<ListItems> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(65),
             ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 25),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      if (purchaseCount > 1) {
-                        purchaseCount -= 1;
-                      } else {
-                        purchaseCount = 1;
-                      }
-                      setState(() {});
-                    },
-                    child: Container(
-                      child: Icon(
-                        Icons.remove,
-                        size: 25,
-                        color:
-                        purchaseCount < 2 ? Colors.grey : Colors.black,
-                      ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    if (purchaseCount > 1) {
+                      purchaseCount -= 1;
+                    } else {
+                      purchaseCount = 1;
+                    }
+                    setState(() {});
+                  },
+                  child: Container(
+                    child: Icon(
+                      Icons.remove,
+                      size: 25,
+                      color:
+                      purchaseCount < 2 ? Colors.grey : Colors.black,
                     ),
                   ),
-                  Container(
-                    width: 25,
-                    height: 25,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(35),
-                    ),
-                    child: Center(
-                      child: Text(
-                        purchaseCount.toString(),
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
+                ),
+                Container(
+                  width: 25,
+                  height: 25,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(35),
+                  ),
+                  child: Center(
+                    child: Text(
+                      purchaseCount.toString(),
+                      style: TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        purchaseCount += 1;
-                      });
-                    },
-                    child: Container(
-                      child: Icon(
-                        Icons.add,
-                        size: 25,
-                        color: Colors.black,
-                      ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      purchaseCount += 1;
+                    });
+                  },
+                  child: Container(
+                    child: Icon(
+                      Icons.add,
+                      size: 25,
+                      color: Colors.black,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],
